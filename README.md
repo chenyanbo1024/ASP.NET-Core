@@ -14,3 +14,7 @@
    - Visual Studio for Mac
    - Visual Studio Code
  
+## Startup：理解程序启动的过程
+ - Program.cs
+ - Startup.cs
+ - 启动过程执行顺序
