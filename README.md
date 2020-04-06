@@ -1,7 +1,5 @@
 # ASP.NET Core 开发实战
 
-[TOC]
-
 ## .NET Core概述
  - .NET Core能做什么(七龙珠)
  
@@ -17,7 +15,7 @@
 ## Startup：理解程序启动的过程
  - Program.cs
   - Main方法：程序唯一入口
-  - 调用了 **CreateHostBuilder ** 方法：创建主机生成器，返回 **IHostBuilder** 
+  - 调用了 **CreateHostBuilder** 方法：创建主机生成器，返回 **IHostBuilder** 
   - **IHostBuilder** ：包含6个方法(重点关注加粗的方法)
     - **ConfigureAppConfiguration**
 	- ConfigureContainer
