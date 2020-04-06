@@ -25,16 +25,16 @@
 	- UseServiceProviderFactory
 	- 上面这6个方法是按照一定顺序执行的，并不是根据我们自己调用顺序来执行
  - Startup.cs
-  - 首先，Startup类，不是必须的，我们也可以省略，但需要在Program类中添加对服务的注册等操作，将其单独作为一个Startup类，只是为了结构更加合理
-  - Configure：服务的注册
-  - ConfigureService：配置服务
-  - 应用程序启动时，会调用shagn上面这两个方法
+   - 首先，Startup类，不是必须的，我们也可以省略，但需要在Program类中添加对服务的注册等操作，将其单独作为一个Startup类，只是为了结构更加合理
+   - Configure：服务的注册
+   - ConfigureService：配置服务
+   - 应用程序启动时，会调用shagn上面这两个方法
  - 启动过程执行顺序
-  - ConfigureWebHostDefaults：注册了应用程序必要的组件（配置的组件、容器的组件等）
-  - ConfigureHostConfiguration：配置应用程序启动时必要的配置
-    - 应用程序启动时所需要监听的端口、URL
-	- 嵌入我们自己的内容注入到框架中
-  - ConfigureAppConfiguration：让我们自己嵌入自己的配置的文件，供应用程序读取
-  - ConfigureServices、ConfigureLogging、Startup、Startup.ConfigureServices
-    - 往容器中注入我们应用的组件
+   - ConfigureWebHostDefaults：注册了应用程序必要的组件（配置的组件、容器的组件等）
+   - ConfigureHostConfiguration：配置应用程序启动时必要的配置
+     - 应用程序启动时所需要监听的端口、URL
+     - 嵌入我们自己的内容注入到框架中
+   - ConfigureAppConfiguration：让我们自己嵌入自己的配置的文件，供应用程序读取
+   - ConfigureServices、ConfigureLogging、Startup、Startup.ConfigureServices
+     - 往容器中注入我们应用的组件
   - Startup.Configure：注入中间件，处理HttpContext整个请求过程
