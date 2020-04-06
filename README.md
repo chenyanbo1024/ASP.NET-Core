@@ -14,16 +14,16 @@
  
 ## Startup：理解程序启动的过程
  - Program.cs
-  - Main方法：程序唯一入口
-  - 调用了 **CreateHostBuilder** 方法：创建主机生成器，返回 **IHostBuilder** 
-  - **IHostBuilder** ：包含6个方法(重点关注加粗的方法)
-    - **ConfigureAppConfiguration**
-	- ConfigureContainer
-	- **ConfigureHostConfiguration**
-	- **ConfigureServices**
-	- UseServiceProviderFactory
-	- UseServiceProviderFactory
-	- 上面这6个方法是按照一定顺序执行的，并不是根据我们自己调用顺序来执行
+   - Main方法：程序唯一入口
+   - 调用了 **CreateHostBuilder** 方法：创建主机生成器，返回 **IHostBuilder** 
+   - **IHostBuilder** ：包含6个方法(重点关注加粗的方法)
+     - **ConfigureAppConfiguration**
+     - ConfigureContainer
+     - **ConfigureHostConfiguration**
+     - **ConfigureServices**
+     - UseServiceProviderFactory
+     - UseServiceProviderFactory
+     - 上面这6个方法是按照一定顺序执行的，并不是根据我们自己调用顺序来执行
  - Startup.cs
    - 首先，Startup类，不是必须的，我们也可以省略，但需要在Program类中添加对服务的注册等操作，将其单独作为一个Startup类，只是为了结构更加合理
    - Configure：服务的注册
