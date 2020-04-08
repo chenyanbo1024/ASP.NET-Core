@@ -38,3 +38,33 @@
    - ConfigureServices、ConfigureLogging、Startup、Startup.ConfigureServices
      - 往容器中注入我们应用的组件
   - Startup.Configure：注入中间件，处理HttpContext整个请求过程
+
+## 依赖注入：良好架构的起点
+ - 为什么要使用依赖注入框架
+   - 借助依赖注入框架，我们可以轻松管理类之间的依赖，帮助我们在构建应用时遵循设计原则，确保代码的可维护性和可扩展性。
+   - ASP .NET Cored的整个架构中，依赖注入框架提供了对象创建和生命周期管理的核心能力，各个组件相互鞋协作，也是由依赖注入框架的能力来实现的
+   - 博客园好文：https://www.cnblogs.com/jesse2013/p/di-in-aspnetcore.html
+ - 组件包
+   - 应用了 “接口实现分离”这一经典的设计模式
+   - 抽象包：Microsoft.Extensions.DependencyInjection.Abstractions
+   - 具体实现包：Microsoft.Extensions.DependencyInjection.Abstractions
+ - 核心类型
+   - IServiceCollection：服务的注册
+   - ServiceDescriptor：每个服务注册时的信息
+   - IServiceProvider：容器，注册的服务都可以通过容器获取到，由 ServiceCollection Build 产生
+   - IServiceScope：子容器的生命周期
+ - 生命周期(SeriviceLifetime)
+   - 单例 Singleton：整个应用程序生命周期以内只创建一个实例 
+   - 作用域 Scoped：每个请求都创建新的实例，在同一请求中，只有同一实例
+   - 瞬时(暂时) Transient：每个注入都会创建一个新实例
+ - 服务注册
+   - 常用注册：AddSingleton、AddScoped、AddTransient
+   - 尝试注册：TryAddSingleton、TryAddScoped、TryAddTransient
+   - 移除和替换：Replace、RemoveAll
+   - 泛型注册：AddSingleton(typeof(IService<>), typeof(Service<>));
+ - 注意点
+   - 避免通过静态属性的方式访问容器对象
+   - 避免在服务内部使用 GetService 方式来获取实例
+   - 避免使用静态属性存储单例，应该使用容器管理单例对象
+   - 避免在服务中实例化依赖对象，应该使用依赖注入来获得依赖对象
+   - 避免向单例的类型注入范围的类型
