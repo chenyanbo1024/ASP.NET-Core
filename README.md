@@ -115,9 +115,11 @@
          - 拦截器的类型：接口拦截器（常用）、类拦截器                                                                                                                             
        - 子容器
          - Autofac支持我们将服务注册到特定的子容器中，这样其他子容器是获取不到当前子容器的这个服务
-         - builder.RegisterType<TService>().InstancePerMatchingLifetimeScope("子容器名称")                                                  - ConfigureServices
-     - 默认的容器注入
-     - 但最终注入的这些服务都会被Autofac接替
+         - builder.RegisterType<TService>().InstancePerMatchingLifetimeScope("子容器名称")   
+ 
+    - ConfigureServices
+      - 默认的容器注入
+      - 但最终注入的这些服务都会被Autofac接替
 
 ## 配置框架：让服务无缝适应各种环境
 ## 配置框架：使用命令行配置提供程序接收命令行参数
