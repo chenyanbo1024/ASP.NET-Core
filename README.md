@@ -80,6 +80,47 @@
    - 坑：实现了 IDisposable 接口的服务，如果时注册瞬时的，又在根容器去做操作，它会一直保持到应用程序退出的时候，才能够被回收掉
 
 ## 依赖注入：使用 Autofac 增强容器能力
+ - 什么时候需要第三方容器组件
+   - 大多数情况下，默认的容器组件就可以实现我们的需求
+   - 基于名称的注入:需要一个服务通过名称来区分不同实现的时候
+   - 基于属性的注入:直接把服务注册到某个类的属性中
+   - 子容器
+   - 基于动态代理AOP
+ - 核心扩展点
+   - interface IServiceProviderFactory<TContainerBuilder>
+   - 第三方容器都是通过这个作为核心扩展点
+ - Autofac
+   - .NET社区中最老牌的容器之一
+   - 两个包
+     - AutofacExtensions.DependencyInjection
+     - Autofac.Extras.DynamicProxy：动态代理包
+   - 在.Net Core中的使用
+     - Program.cs中使用 UseServiceProviderFactory注册第三方容器
+     - Startup.cs中添加 ConfigureContainer(ContainerBuilder builder)
+     - 注册
+       - 普通注册:builder.RegisterType<TService>().As<ITService>();
+       - 命名注册
+         - 同一服务注册多次，同时使用不同的名称来区分时，可使用命名注册
+         - builder.RegisterType<TService>().Named<ITService>("serviceName");
+         - 获取服务:在根容器中使用Resolve这一组方法即可获取
+       - 属性注册:builder.RegisterType<TService>().As<ITService>().PropertiesAutowired;
+       - AOP
+         - IInterceptor
+           - Autofac面向切面编程最重要的一个接口
+           - 通过该接口，我们可以把逻辑在不改变原有类的基础上注入到方法的切面上
+           - Proceed()
+         - 切面的启用
+           - 注册拦截器到容器中
+           - builder.RegisterType<TService>().As<ITService().PropertiesAutowired().InterceptedBy(typeof(TInterceptor)).EnableInterfaceInterceptors();
+         - 拦截器的类型：接口拦截器（常用）、类拦截器                                                                                                                             
+       - 子容器
+         - Autofac支持我们将服务注册到特定的子容器中，这样其他子容器是获取不到当前子容器的这个服务
+         - builder.RegisterType<TService>().InstancePerMatchingLifetimeScope("子容器名称")   
+ 
+    - ConfigureServices
+      - 默认的容器注入
+      - 但最终注入的这些服务都会被Autofac接替
+
 ## 配置框架：让服务无缝适应各种环境
 ## 配置框架：使用命令行配置提供程序接收命令行参数
 ## 配置框架：使用环境变量配置提供程序接收环境变量
