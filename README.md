@@ -122,6 +122,21 @@
       - 但最终注入的这些服务都会被Autofac接替
 
 ## 配置框架：让服务无缝适应各种环境
+ - 核心组件包
+   - “接口实现设计分离”设计模式
+   - Microsoft.Extensions.Configuration. Abstractions：抽象包
+   - Microsoft.Extensions.Configuration：实现包
+ - 配置框架
+   - key-value 字符串键值对的方式抽象了配置，使我们只需要关注键值对的内容即可
+   - 支持从各种不同的数据源读取配置，例如从命令行读取、从文件读取等等
+ - 配置框架核心类型
+   - IConfiguration
+   - IConfigurationRoot:配置的根、读取配置的动作都是从这个接口中读取
+   - IConfigurationSection:当配置不只是简单的键值对时，可用section来进行分组，在json中很常用
+   - IConfigurationBuilder:构建配置的核心
+ - 配置框架扩展点
+   - IConfigurationSource
+   - IConfigurationProvider
 ## 配置框架：使用命令行配置提供程序接收命令行参数
 ## 配置框架：使用环境变量配置提供程序接收环境变量
 ## 配置框架：使用文件配置提供程序读取配置文件
