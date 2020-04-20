@@ -138,8 +138,34 @@
    - IConfigurationSource
    - IConfigurationProvider
 ## 配置框架：使用命令行配置提供程序接收命令行参数
+ - 支持的命令格式
+   - 无前缀的 key=value 模式
+   - 双中横线模式 --key=value 或 --key value
+   - 正斜杠模式 /key=value 或 /key value
+   - 备注： 等号分隔符和空格分隔符不能混用
+ - 命令替换模式
+   - 必须以单划线 (-) 或双划线 (--) 开头
+   - 映射字典不能包含重复 Key
 ## 配置框架：使用环境变量配置提供程序接收环境变量
+ - 环境变量包：Configuration.EnvironmentVariables
+ - 适合场景
+   - 在Docker中运行
+   - 在 Kubernetes 中运行时
+   - 需要设置 ASP.NET Core 的一些内置特殊配置时
+ - 特性
+   - 对于配置的分层键，支持用双下横线 “__” 代替 “:”:获取环境变量时，依然使用":",环境变量则使用"__"来进行分层
+   - 支持根据前缀加载:可通过前缀过滤的方式只加载环境变量中前缀为指定的前缀才会加载，而不是加载整个系统中的整个环境变量
 ## 配置框架：使用文件配置提供程序读取配置文件
+ - 文件配置提供程序
+   - Microsoft.Extensions.Configuration.Ini
+   - Microsoft.Extensions.Configuration.Json
+   - Microsoft.Extensions.Configuration.NewtonsoftJson
+   - Microsoft.Extensions.Configuration.Xml
+   - Microsoft.Extensions.Configuration.UserSecrets
+ - 特性
+   - 指定文件可选、必选：optional参数
+   - 指定是否监视文件的变更：reloadOnchange参数
+   - 后添加的配置会覆盖原配置
 ## 配置框架：跟踪配置变更实现配置热更新
 ## 配置框架：使用强类型对象承载配置数据
 ## 配置框架：自定义配置数据源与配置中心方案
