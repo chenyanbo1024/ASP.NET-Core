@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "d1FFHelmdD0R5Sz9qq8Go3QXzfWvNPQ3d//jOsdxSPYacnqGD5Jfk1xo/YYrngHJk5D5eXwYJou/a002d8yzZw==",
+  "success": true,
+  "projectFilePath": "D:\\04Temp\\geektime\\ASP.NET.Core\\geektime-netcore\\DependencyInjectionDemo\\DependencyInjectionDemo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chen\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.3\\microsoft.extensions.dependencyinjection.3.1.3.nupkg.sha512",
+    "C:\\Users\\chen\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.3\\microsoft.extensions.dependencyinjection.abstractions.3.1.3.nupkg.sha512"
+  ],
+  "logs": []
+}
